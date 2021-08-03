@@ -16,6 +16,7 @@ class ViewController: NSViewController {
         // What is a MTKView?
         // A specialized view that creates, configures, and displays Metal objects; Therefore, it must be used to used Metal API objects
         guard let metalView = view as? MTKView else { return }
+        addGestureRecognizers(to: metalView)
         renderer = Renderer(metalView: metalView)
     }
 

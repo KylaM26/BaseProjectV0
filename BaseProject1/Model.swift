@@ -7,7 +7,7 @@
 
 import MetalKit
 
-class Model {
+class Model: Node {
     var meshes: [Mesh]
     
     init(name: String) {
@@ -19,14 +19,23 @@ class Model {
         let (mdlMeshes, mtkMeshes) = try! MTKMesh.newMeshes(asset: asset, device: Renderer.device)
         
         meshes = zip(mdlMeshes, mtkMeshes).map { Mesh(mdlMesh: $0.0, mtkMesh: $0.1) }
+        
+        super.init()
+        self.name = name
     }
 }
 
 extension Model: Renderable {
-    func draw(renderEncoder: MTLRenderCommandEncoder) {
+    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms) {
+        var vertexUniforms = uniforms
+        
+        vertexUniforms.modelMatrix = modelMatrix
+        renderEncoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<Uniforms>.stride, index: Int(UniformBufferIndex.rawValue))
+        
         for mesh in meshes {
+ 
             let vertexBuffer = mesh.mtkMesh.vertexBuffers[0].buffer
-            renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+            renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(VertexBufferIndex.rawValue))
             
             for submesh in mesh.submeshes {
                 guard let pipelineState = submesh.renderPipelineState else { fatalError("Failed to set render pipeline state for model.") }

@@ -8,15 +8,29 @@
 #include <metal_stdlib>
 using namespace metal;
 
+#import "Common.h"
+
 struct VertexIn {
-    float3 position [[ attribute(0) ]];
+    float4 position [[ attribute(Position) ]];
+    float3 normal   [[  attribute(Normal)  ]];
 };
 
-vertex float4 vertex_main(VertexIn vertex_in [[ stage_in ]]) {
-    return float4(vertex_in.position, 1);
+struct VertexOut {
+    float4 position [[position]];
+    float3 normal;
+};
+
+vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Uniforms &uniforms [[ buffer(UniformBufferIndex) ]]) {
+    
+    VertexOut out {
+        .position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * vertex_in.position,
+        .normal = vertex_in.normal
+    };
+    
+    return out;
 }
 
-fragment float4 fragment_main() {
-    return float4(0.5, 0.1, 0.3, 1);
+fragment float4 fragment_main(const VertexOut vertex_out [[ stage_in ]]) {
+    return float4(vertex_out.normal, 1);
 }
 

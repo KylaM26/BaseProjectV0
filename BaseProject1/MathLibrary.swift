@@ -123,7 +123,7 @@ extension Matrix4x4 { // This is type alias for apple's float4x4
         columns = (X, Y, Z, W)
     }
     
-    static func Indentity() -> Matrix4x4 { matrix_identity_float4x4 }
+    static func indentity() -> Matrix4x4 { matrix_identity_float4x4 }
 }
 
 // MARK:- Vector4

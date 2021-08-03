@@ -22,6 +22,7 @@ class Submesh {
         descriptor.vertexFunction = Renderer.library.makeFunction(name: "vertex_main")
         descriptor.fragmentFunction = Renderer.library.makeFunction(name: "fragment_main")
         descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(MDLVertexDescriptor.defaultVertexDescriptor)
+        descriptor.depthAttachmentPixelFormat = .depth32Float
         
         var pipelineState: MTLRenderPipelineState? = nil
         
