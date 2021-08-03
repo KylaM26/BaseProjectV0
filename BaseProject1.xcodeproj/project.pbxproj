@@ -11,6 +11,11 @@
 		7A19E6EA26B8D5DA00837482 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E6E926B8D5DA00837482 /* ViewController.swift */; };
 		7A19E6EC26B8D5DD00837482 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E6EB26B8D5DD00837482 /* Assets.xcassets */; };
 		7A19E6EF26B8D5DD00837482 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E6ED26B8D5DD00837482 /* Main.storyboard */; };
+		7A19E6F926B8D6ED00837482 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E6F826B8D6ED00837482 /* Renderer.swift */; };
+		7A19E6FC26B8DC9C00837482 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E6FB26B8DC9C00837482 /* Model.swift */; };
+		7A19E70126B8DCC500837482 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E6FF26B8DCC400837482 /* chest.obj */; };
+		7A19E70226B8DCC500837482 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E70026B8DCC400837482 /* chest.mtl */; };
+		7A19E70626B8DCDC00837482 /* Textures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E70526B8DCDC00837482 /* Textures.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		7A19E6EE26B8D5DD00837482 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A19E6F026B8D5DD00837482 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A19E6F126B8D5DD00837482 /* BaseProject1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaseProject1.entitlements; sourceTree = "<group>"; };
+		7A19E6F826B8D6ED00837482 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		7A19E6FB26B8DC9C00837482 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7A19E6FF26B8DCC400837482 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chest.obj; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/resources/treasure-chest/chest.obj"; sourceTree = "<group>"; };
+		7A19E70026B8DCC400837482 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chest.mtl; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/resources/treasure-chest/chest.mtl"; sourceTree = "<group>"; };
+		7A19E70526B8DCDC00837482 /* Textures.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Textures.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +63,27 @@
 		7A19E6E626B8D5DA00837482 /* BaseProject1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A19E6FE26B8DCA100837482 /* Models */,
 				7A19E6E726B8D5DA00837482 /* AppDelegate.swift */,
 				7A19E6E926B8D5DA00837482 /* ViewController.swift */,
 				7A19E6EB26B8D5DD00837482 /* Assets.xcassets */,
 				7A19E6ED26B8D5DD00837482 /* Main.storyboard */,
 				7A19E6F026B8D5DD00837482 /* Info.plist */,
 				7A19E6F126B8D5DD00837482 /* BaseProject1.entitlements */,
+				7A19E6F826B8D6ED00837482 /* Renderer.swift */,
+				7A19E6FB26B8DC9C00837482 /* Model.swift */,
+				7A19E70526B8DCDC00837482 /* Textures.xcassets */,
 			);
 			path = BaseProject1;
+			sourceTree = "<group>";
+		};
+		7A19E6FE26B8DCA100837482 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7A19E70026B8DCC400837482 /* chest.mtl */,
+				7A19E6FF26B8DCC400837482 /* chest.obj */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,8 +143,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A19E70126B8DCC500837482 /* chest.obj in Resources */,
 				7A19E6EC26B8D5DD00837482 /* Assets.xcassets in Resources */,
 				7A19E6EF26B8D5DD00837482 /* Main.storyboard in Resources */,
+				7A19E70626B8DCDC00837482 /* Textures.xcassets in Resources */,
+				7A19E70226B8DCC500837482 /* chest.mtl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A19E6EA26B8D5DA00837482 /* ViewController.swift in Sources */,
+				7A19E6F926B8D6ED00837482 /* Renderer.swift in Sources */,
 				7A19E6E826B8D5DA00837482 /* AppDelegate.swift in Sources */,
+				7A19E6FC26B8DC9C00837482 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
