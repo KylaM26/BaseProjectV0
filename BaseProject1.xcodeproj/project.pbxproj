@@ -16,6 +16,13 @@
 		7A19E70126B8DCC500837482 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E6FF26B8DCC400837482 /* chest.obj */; };
 		7A19E70226B8DCC500837482 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E70026B8DCC400837482 /* chest.mtl */; };
 		7A19E70626B8DCDC00837482 /* Textures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A19E70526B8DCDC00837482 /* Textures.xcassets */; };
+		7A19E70926B8DDBF00837482 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E70826B8DDBF00837482 /* Node.swift */; };
+		7A19E70C26B8DEAA00837482 /* VertexDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E70B26B8DEAA00837482 /* VertexDescriptorExtension.swift */; };
+		7A19E71526B8DFEC00837482 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E71426B8DFEC00837482 /* MathLibrary.swift */; };
+		7A19E71826B8E42D00837482 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E71726B8E42D00837482 /* Mesh.swift */; };
+		7A19E71B26B8E44200837482 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E71A26B8E44200837482 /* Submesh.swift */; };
+		7A19E71E26B8E57A00837482 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E71D26B8E57A00837482 /* Renderable.swift */; };
+		7A19E72226B8E77400837482 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E72126B8E77400837482 /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +38,14 @@
 		7A19E6FF26B8DCC400837482 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chest.obj; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/resources/treasure-chest/chest.obj"; sourceTree = "<group>"; };
 		7A19E70026B8DCC400837482 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = chest.mtl; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/resources/treasure-chest/chest.mtl"; sourceTree = "<group>"; };
 		7A19E70526B8DCDC00837482 /* Textures.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Textures.xcassets; sourceTree = "<group>"; };
+		7A19E70826B8DDBF00837482 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		7A19E70B26B8DEAA00837482 /* VertexDescriptorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexDescriptorExtension.swift; sourceTree = "<group>"; };
+		7A19E71126B8DF4F00837482 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		7A19E71426B8DFEC00837482 /* MathLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
+		7A19E71726B8E42D00837482 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		7A19E71A26B8E44200837482 /* Submesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
+		7A19E71D26B8E57A00837482 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		7A19E72126B8E77400837482 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +88,12 @@
 				7A19E6F826B8D6ED00837482 /* Renderer.swift */,
 				7A19E6FB26B8DC9C00837482 /* Model.swift */,
 				7A19E70526B8DCDC00837482 /* Textures.xcassets */,
+				7A19E70826B8DDBF00837482 /* Node.swift */,
+				7A19E71126B8DF4F00837482 /* Common.h */,
+				7A19E71426B8DFEC00837482 /* MathLibrary.swift */,
+				7A19E71A26B8E44200837482 /* Submesh.swift */,
+				7A19E71D26B8E57A00837482 /* Renderable.swift */,
+				7A19E72126B8E77400837482 /* Shaders.metal */,
 			);
 			path = BaseProject1;
 			sourceTree = "<group>";
@@ -80,10 +101,20 @@
 		7A19E6FE26B8DCA100837482 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7A19E70E26B8DEB400837482 /* Extensions */,
 				7A19E70026B8DCC400837482 /* chest.mtl */,
 				7A19E6FF26B8DCC400837482 /* chest.obj */,
+				7A19E71726B8E42D00837482 /* Mesh.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7A19E70E26B8DEB400837482 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7A19E70B26B8DEAA00837482 /* VertexDescriptorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +190,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A19E6EA26B8D5DA00837482 /* ViewController.swift in Sources */,
+				7A19E71526B8DFEC00837482 /* MathLibrary.swift in Sources */,
+				7A19E71826B8E42D00837482 /* Mesh.swift in Sources */,
+				7A19E71E26B8E57A00837482 /* Renderable.swift in Sources */,
+				7A19E70926B8DDBF00837482 /* Node.swift in Sources */,
+				7A19E71B26B8E44200837482 /* Submesh.swift in Sources */,
 				7A19E6F926B8D6ED00837482 /* Renderer.swift in Sources */,
 				7A19E6E826B8D5DA00837482 /* AppDelegate.swift in Sources */,
+				7A19E72226B8E77400837482 /* Shaders.metal in Sources */,
+				7A19E70C26B8DEAA00837482 /* VertexDescriptorExtension.swift in Sources */,
 				7A19E6FC26B8DC9C00837482 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +274,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = BaseProject1/Common.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -290,6 +329,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = BaseProject1/Common.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;

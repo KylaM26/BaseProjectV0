@@ -12,6 +12,10 @@ class Renderer: NSObject {
     static var device: MTLDevice!
     static var commandQueue: MTLCommandQueue!
     
+    static var library: MTLLibrary!
+    
+    var models: [Model] = []
+    
     init(metalView: MTKView) {
         // MTLDevice objects are your go-to object to do anything in Metal. This method checks for a suitable GPU
         guard let device = MTLCreateSystemDefaultDevice() else { fatalError("Failed to create metal device.") }
@@ -23,7 +27,13 @@ class Renderer: NSObject {
         guard let commandQueue = device.makeCommandQueue() else { fatalError("Failed to create command queue.") }
         Renderer.commandQueue = commandQueue
         
+        Renderer.library = device.makeDefaultLibrary()
+        
         super.init()
+        
+        let chest = Model(name: "chest.obj")
+        models.append(chest)
+        
         metalView.delegate = self
         metalView.clearColor = MTLClearColor(red: 0, green: 0.5, blue: 1, alpha: 1)
         
@@ -49,6 +59,9 @@ extension Renderer: MTKViewDelegate {
         
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { fatalError("Failed to create render command encoder.") }
         
+        for model in models {
+            model.draw(renderEncoder: renderEncoder)
+        }
         
         renderEncoder.endEncoding()
         commandBuffer.present(drawable)
