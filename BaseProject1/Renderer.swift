@@ -17,7 +17,9 @@ class Renderer: NSObject {
     var depthStencilState: MTLDepthStencilState?
     
     var models: [Model] = []
+    
     var uniforms = Uniforms()
+    var fragmentUniforms = FragmentUniforms()
     
     var camera: Camera = {
         let camera = ArcballCamera()
@@ -47,6 +49,12 @@ class Renderer: NSObject {
         
         let chest = Model(name: "chest.obj")
         models.append(chest)
+        
+        let ground = Model(name: "plane.obj")
+        ground.position = [0, 0, 0]
+        ground.scale = [40, 10, 40]
+        ground.tiling = 16
+        models.append(ground)
         
         metalView.delegate = self
         metalView.clearColor = MTLClearColor(red: 0, green: 0.5, blue: 1, alpha: 1)
@@ -84,7 +92,7 @@ extension Renderer: MTKViewDelegate {
         uniforms.projectionMatrix = camera.projectionMatrix
         
         for model in models {
-            model.render(renderEncoder: renderEncoder, uniforms: uniforms)
+            model.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms)
         }
         
         renderEncoder.endEncoding()

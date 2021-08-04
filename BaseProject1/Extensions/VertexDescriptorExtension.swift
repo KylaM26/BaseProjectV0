@@ -19,6 +19,9 @@ extension MDLVertexDescriptor {
         descriptor.attributes[1] = MDLVertexAttribute(name: MDLVertexAttributeNormal, format: .float3, offset: offset, bufferIndex: Int(VertexBufferIndex.rawValue))
         offset += MemoryLayout<Vector3>.stride
         
+        descriptor.attributes[2] = MDLVertexAttribute(name: MDLVertexAttributeTextureCoordinate, format: .float2, offset: offset, bufferIndex: Int(VertexBufferIndex.rawValue))
+        offset += MemoryLayout<Vector2>.stride
+        
         descriptor.layouts[0] = MDLVertexBufferLayout(stride: offset)
         
         return descriptor

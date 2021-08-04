@@ -27,6 +27,9 @@
 		7A19E72B26B8ED6200837482 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E72A26B8ED6200837482 /* Camera.swift */; };
 		7A19E72E26B8EE0300837482 /* ArcballCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E72D26B8EE0300837482 /* ArcballCamera.swift */; };
 		7A19E73126B8F10B00837482 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E73026B8F10B00837482 /* ViewControllerExtension.swift */; };
+		7A19E73426B8FB9C00837482 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E73326B8FB9C00837482 /* Textures.swift */; };
+		7AC1B0B926BA16F4001B8B86 /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7AC1B0B726BA16F4001B8B86 /* plane.mtl */; };
+		7AC1B0BA26BA16F4001B8B86 /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7AC1B0B826BA16F4001B8B86 /* plane.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		7A19E72A26B8ED6200837482 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		7A19E72D26B8EE0300837482 /* ArcballCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcballCamera.swift; sourceTree = "<group>"; };
 		7A19E73026B8F10B00837482 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		7A19E73326B8FB9C00837482 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		7AC1B0B726BA16F4001B8B86 /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.mtl; path = "../../../../MetalSourceCode/06-textures/projects/final/Texture/Texture/Models/Ground/plane.mtl"; sourceTree = "<group>"; };
+		7AC1B0B826BA16F4001B8B86 /* plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.obj; path = "../../../../MetalSourceCode/06-textures/projects/final/Texture/Texture/Models/Ground/plane.obj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 				7A19E6FB26B8DC9C00837482 /* Model.swift */,
 				7A19E6F826B8D6ED00837482 /* Renderer.swift */,
 				7A19E71A26B8E44200837482 /* Submesh.swift */,
+				7A19E73326B8FB9C00837482 /* Textures.swift */,
 				7A19E71D26B8E57A00837482 /* Renderable.swift */,
 				7A19E72426B8EA8F00837482 /* Texturable.swift */,
 				7A19E71426B8DFEC00837482 /* MathLibrary.swift */,
@@ -101,11 +108,11 @@
 				7A19E6E926B8D5DA00837482 /* ViewController.swift */,
 				7A19E71126B8DF4F00837482 /* Common.h */,
 				7A19E72126B8E77400837482 /* Shaders.metal */,
+				7A19E70526B8DCDC00837482 /* Textures.xcassets */,
 				7A19E6EB26B8D5DD00837482 /* Assets.xcassets */,
 				7A19E6ED26B8D5DD00837482 /* Main.storyboard */,
 				7A19E6F026B8D5DD00837482 /* Info.plist */,
 				7A19E6F126B8D5DD00837482 /* BaseProject1.entitlements */,
-				7A19E70526B8DCDC00837482 /* Textures.xcassets */,
 			);
 			path = BaseProject1;
 			sourceTree = "<group>";
@@ -113,6 +120,8 @@
 		7A19E6FE26B8DCA100837482 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7AC1B0B726BA16F4001B8B86 /* plane.mtl */,
+				7AC1B0B826BA16F4001B8B86 /* plane.obj */,
 				7A19E70026B8DCC400837482 /* chest.mtl */,
 				7A19E6FF26B8DCC400837482 /* chest.obj */,
 			);
@@ -196,6 +205,8 @@
 			files = (
 				7A19E70126B8DCC500837482 /* chest.obj in Resources */,
 				7A19E6EC26B8D5DD00837482 /* Assets.xcassets in Resources */,
+				7AC1B0BA26BA16F4001B8B86 /* plane.obj in Resources */,
+				7AC1B0B926BA16F4001B8B86 /* plane.mtl in Resources */,
 				7A19E6EF26B8D5DD00837482 /* Main.storyboard in Resources */,
 				7A19E70626B8DCDC00837482 /* Textures.xcassets in Resources */,
 				7A19E70226B8DCC500837482 /* chest.mtl in Resources */,
@@ -222,6 +233,7 @@
 				7A19E72226B8E77400837482 /* Shaders.metal in Sources */,
 				7A19E72E26B8EE0300837482 /* ArcballCamera.swift in Sources */,
 				7A19E72B26B8ED6200837482 /* Camera.swift in Sources */,
+				7A19E73426B8FB9C00837482 /* Textures.swift in Sources */,
 				7A19E70C26B8DEAA00837482 /* VertexDescriptorExtension.swift in Sources */,
 				7A19E6FC26B8DC9C00837482 /* Model.swift in Sources */,
 			);

@@ -7,16 +7,19 @@
 
 import MetalKit
 
-class Submesh {
+class Submesh: Texturable {
     var mtkSubmesh: MTKSubmesh
     var renderPipelineState: MTLRenderPipelineState?
     
+    var textures: Textures
+    
     init(mdlSubmesh: MDLSubmesh, mtkSubmesh: MTKSubmesh) {
         self.mtkSubmesh = mtkSubmesh
-        renderPipelineState = buildRenderPipelineState()
+        renderPipelineState = Submesh.buildRenderPipelineState()
+        textures = Textures(material: mdlSubmesh.material)
     }
     
-    func buildRenderPipelineState() -> MTLRenderPipelineState? {
+    static func buildRenderPipelineState() -> MTLRenderPipelineState? {
         let descriptor = MTLRenderPipelineDescriptor()
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         descriptor.vertexFunction = Renderer.library.makeFunction(name: "vertex_main")
