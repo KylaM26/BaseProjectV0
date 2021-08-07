@@ -24,7 +24,7 @@ class Submesh: Texturable {
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         descriptor.vertexFunction = Renderer.library.makeFunction(name: "vertex_main")
         descriptor.fragmentFunction = Renderer.library.makeFunction(name: "fragment_main")
-        descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(MDLVertexDescriptor.defaultVertexDescriptor)
+        descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(Model.vertexAttributeDescriptor)
         descriptor.depthAttachmentPixelFormat = .depth32Float
         
         var pipelineState: MTLRenderPipelineState? = nil

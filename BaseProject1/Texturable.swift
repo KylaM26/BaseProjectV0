@@ -12,19 +12,23 @@ protocol Texturable { }
 extension Texturable {
     static func loadTexture(imageName: String) -> MTLTexture? {
         let textureLoader = MTKTextureLoader(device: Renderer.device)
+        
 
         let textureLoaderOptions: [MTKTextureLoader.Option: Any] = [
             .origin: MTKTextureLoader.Origin.bottomLeft,
-            .SRGB: false,
+            .SRGB : false,
             .generateMipmaps: NSNumber(booleanLiteral: true)
         ]
-        
-        let fileExtension = URL(fileURLWithPath: imageName).path.isEmpty ? "png" : nil
-        
+
+        let fileExtension = URL(fileURLWithPath: imageName).pathExtension.isEmpty ?  "png" : nil
+
         guard let url = Bundle.main.url(forResource: imageName, withExtension: fileExtension) else {
-            return try? textureLoader.newTexture(name: imageName, scaleFactor: 1, bundle: Bundle.main, options: textureLoaderOptions)
+            print( "Failed to load \(imageName)\n - loading from Assets Catalog")
+            return try? textureLoader.newTexture(name: imageName,scaleFactor: 1.0, bundle: Bundle.main, options: nil)
         }
         
-        return try? textureLoader.newTexture(URL: url, options: textureLoaderOptions)
+        let texture = try? textureLoader.newTexture(URL: url, options: textureLoaderOptions)
+        print("loaded texture: \(url.lastPathComponent)")
+        return texture
     }
 }

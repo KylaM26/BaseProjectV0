@@ -19,6 +19,7 @@ class Renderer: NSObject {
     var models: [Model] = []
     
     var uniforms = Uniforms()
+    var lights: [Light] = []
     var fragmentUniforms = FragmentUniforms()
     
     var camera: Camera = {
@@ -47,17 +48,22 @@ class Renderer: NSObject {
         
         super.init()
         
-        let chest = Model(name: "chest.obj")
-        models.append(chest)
+        let plane = Model(name: "plane.obj")
+        plane.tiling = 16
+        plane.scale = [40, 40, 40]
+        plane.position.y = -1
+        models.append(plane)
+
+        let cube = Model(name: "cube.obj")
+        models.append(cube)
         
-        let ground = Model(name: "plane.obj")
-        ground.position = [0, 0, 0]
-        ground.scale = [40, 10, 40]
-        ground.tiling = 16
-        models.append(ground)
+        
+        lights.append(sunlight)
+        lights.append(ambientLight)
+        fragmentUniforms.lightCount = UInt32(lights.count)
         
         metalView.delegate = self
-        metalView.clearColor = MTLClearColor(red: 0, green: 0.5, blue: 1, alpha: 1)
+        metalView.clearColor = MTLClearColor(red: 0.4, green: 0.8, blue: 1, alpha: 1)
         
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
     }
@@ -91,8 +97,12 @@ extension Renderer: MTKViewDelegate {
         uniforms.viewMatrix = camera.viewMatrix
         uniforms.projectionMatrix = camera.projectionMatrix
         
+        fragmentUniforms.cameraPosition = camera.position
+        
+        renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: Int(LightsBufferIndex.rawValue))
+        
         for model in models {
-            model.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms)
+            model.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms, lights: lights)
         }
         
         renderEncoder.endEncoding()

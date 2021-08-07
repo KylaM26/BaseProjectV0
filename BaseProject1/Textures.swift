@@ -11,29 +11,24 @@ struct Textures {
     var material: MDLMaterial?
     
     var diffuse: MTLTexture?
-    var roughness: MTLTexture?
     
     init(material: MDLMaterial?) {
         self.material = material
         diffuse = property(semantic: .baseColor)
-        roughness = property(semantic: .roughness)
     }
     
     func property(semantic: MDLMaterialSemantic) -> MTLTexture? {
-        let property = material?.property(with: semantic)
         
-        // For obj
-        if let type = property?.type, type == .string, let filename = property?.stringValue {
-            return try? Submesh.loadTexture(imageName: filename)
+        guard let property = material?.property(with: semantic), property.type == .string, let filename = property.stringValue else {
+            return nil
         }
         
-        // For usd formats
-//        if let property = material?.property(with: semantic),
-//           property.type == .texture,
-//           let mdlTexture = property.textureSamplerValue?.texture {
-//            return try? Submesh.loadTexture(texture: mdlTexture)
-//        }
+        var texture: MTLTexture? = nil
         
-        return nil
+        if let newTexture = try? Submesh.loadTexture(imageName: filename) {
+            texture = newTexture
+        }
+        
+        return texture
     }
 };

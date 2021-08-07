@@ -28,6 +28,17 @@
 		7A19E72E26B8EE0300837482 /* ArcballCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E72D26B8EE0300837482 /* ArcballCamera.swift */; };
 		7A19E73126B8F10B00837482 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E73026B8F10B00837482 /* ViewControllerExtension.swift */; };
 		7A19E73426B8FB9C00837482 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19E73326B8FB9C00837482 /* Textures.swift */; };
+		7A2E495D26BA4E16007BB8E9 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7A2E495B26BA4E16007BB8E9 /* cube.obj */; };
+		7A2E495E26BA4E16007BB8E9 /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7A2E495C26BA4E16007BB8E9 /* cube.mtl */; };
+		7AA019A026BB70EC00192ADE /* lowpoly-house.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7AA0199E26BB70EC00192ADE /* lowpoly-house.mtl */; };
+		7AA019A126BB70EC00192ADE /* lowpoly-house.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7AA0199F26BB70EC00192ADE /* lowpoly-house.obj */; };
+		7AA019A526BB769100192ADE /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AA019A426BB769100192ADE /* ground.png */; };
+		7AA019A826BB769D00192ADE /* lowpoly-house-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AA019A726BB769D00192ADE /* lowpoly-house-color.png */; };
+		7AB82CE326BCDC0100DF76CF /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7AB82CDF26BCDC0100DF76CF /* train.obj */; };
+		7AB82CE426BCDC0100DF76CF /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7AB82CE026BCDC0100DF76CF /* train.mtl */; };
+		7AB82CE526BCDC0100DF76CF /* treefir.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7AB82CE126BCDC0100DF76CF /* treefir.obj */; };
+		7AB82CE626BCDC0100DF76CF /* treefir.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7AB82CE226BCDC0100DF76CF /* treefir.mtl */; };
+		7AB82CE926BCDE5E00DF76CF /* Lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB82CE826BCDE5E00DF76CF /* Lights.swift */; };
 		7AC1B0B926BA16F4001B8B86 /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7AC1B0B726BA16F4001B8B86 /* plane.mtl */; };
 		7AC1B0BA26BA16F4001B8B86 /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7AC1B0B826BA16F4001B8B86 /* plane.obj */; };
 /* End PBXBuildFile section */
@@ -52,12 +63,23 @@
 		7A19E71726B8E42D00837482 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		7A19E71A26B8E44200837482 /* Submesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
 		7A19E71D26B8E57A00837482 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
-		7A19E72126B8E77400837482 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		7A19E72126B8E77400837482 /* Shaders.metal */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		7A19E72426B8EA8F00837482 /* Texturable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
 		7A19E72A26B8ED6200837482 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		7A19E72D26B8EE0300837482 /* ArcballCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcballCamera.swift; sourceTree = "<group>"; };
 		7A19E73026B8F10B00837482 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		7A19E73326B8FB9C00837482 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		7A2E495B26BA4E16007BB8E9 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.obj; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/final/Materials/Materials/Models/cube.obj"; sourceTree = "<group>"; };
+		7A2E495C26BA4E16007BB8E9 /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.mtl; path = "../../../../MetalSourceCode/07-maps-and-materials/projects/final/Materials/Materials/Models/cube.mtl"; sourceTree = "<group>"; };
+		7AA0199E26BB70EC00192ADE /* lowpoly-house.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "lowpoly-house.mtl"; path = "../../../../Chapters/Chapter6(Textures)/Texture/Texture/Models/LowPolyHouse/lowpoly-house.mtl"; sourceTree = "<group>"; };
+		7AA0199F26BB70EC00192ADE /* lowpoly-house.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "lowpoly-house.obj"; path = "../../../../Chapters/Chapter6(Textures)/Texture/Texture/Models/LowPolyHouse/lowpoly-house.obj"; sourceTree = "<group>"; };
+		7AA019A426BB769100192ADE /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = "../../../../Chapters/Chapter6(Textures)/Texture/Texture/Models/Ground/ground.png"; sourceTree = "<group>"; };
+		7AA019A726BB769D00192ADE /* lowpoly-house-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lowpoly-house-color.png"; path = "../../../../Chapters/Chapter6(Textures)/Texture/Texture/Models/LowPolyHouse/lowpoly-house-color.png"; sourceTree = "<group>"; };
+		7AB82CDF26BCDC0100DF76CF /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = train.obj; path = "../../../../MetalSourceCode/05-lighting-fundamentals/projects/starter/Lighting/Lighting/Models/train.obj"; sourceTree = "<group>"; };
+		7AB82CE026BCDC0100DF76CF /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = train.mtl; path = "../../../../MetalSourceCode/05-lighting-fundamentals/projects/starter/Lighting/Lighting/Models/train.mtl"; sourceTree = "<group>"; };
+		7AB82CE126BCDC0100DF76CF /* treefir.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = treefir.obj; path = "../../../../MetalSourceCode/05-lighting-fundamentals/projects/starter/Lighting/Lighting/Models/treefir.obj"; sourceTree = "<group>"; };
+		7AB82CE226BCDC0100DF76CF /* treefir.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = treefir.mtl; path = "../../../../MetalSourceCode/05-lighting-fundamentals/projects/starter/Lighting/Lighting/Models/treefir.mtl"; sourceTree = "<group>"; };
+		7AB82CE826BCDE5E00DF76CF /* Lights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lights.swift; sourceTree = "<group>"; };
 		7AC1B0B726BA16F4001B8B86 /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.mtl; path = "../../../../MetalSourceCode/06-textures/projects/final/Texture/Texture/Models/Ground/plane.mtl"; sourceTree = "<group>"; };
 		7AC1B0B826BA16F4001B8B86 /* plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plane.obj; path = "../../../../MetalSourceCode/06-textures/projects/final/Texture/Texture/Models/Ground/plane.obj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +120,7 @@
 				7A19E70826B8DDBF00837482 /* Node.swift */,
 				7A19E71726B8E42D00837482 /* Mesh.swift */,
 				7A19E6FB26B8DC9C00837482 /* Model.swift */,
+				7AB82CE826BCDE5E00DF76CF /* Lights.swift */,
 				7A19E6F826B8D6ED00837482 /* Renderer.swift */,
 				7A19E71A26B8E44200837482 /* Submesh.swift */,
 				7A19E73326B8FB9C00837482 /* Textures.swift */,
@@ -120,6 +143,16 @@
 		7A19E6FE26B8DCA100837482 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7AB82CE026BCDC0100DF76CF /* train.mtl */,
+				7AB82CDF26BCDC0100DF76CF /* train.obj */,
+				7AB82CE226BCDC0100DF76CF /* treefir.mtl */,
+				7AB82CE126BCDC0100DF76CF /* treefir.obj */,
+				7AA019A726BB769D00192ADE /* lowpoly-house-color.png */,
+				7AA019A426BB769100192ADE /* ground.png */,
+				7AA0199E26BB70EC00192ADE /* lowpoly-house.mtl */,
+				7AA0199F26BB70EC00192ADE /* lowpoly-house.obj */,
+				7A2E495C26BA4E16007BB8E9 /* cube.mtl */,
+				7A2E495B26BA4E16007BB8E9 /* cube.obj */,
 				7AC1B0B726BA16F4001B8B86 /* plane.mtl */,
 				7AC1B0B826BA16F4001B8B86 /* plane.obj */,
 				7A19E70026B8DCC400837482 /* chest.mtl */,
@@ -131,8 +164,8 @@
 		7A19E70E26B8DEB400837482 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7A19E70B26B8DEAA00837482 /* VertexDescriptorExtension.swift */,
 				7A19E73026B8F10B00837482 /* ViewControllerExtension.swift */,
+				7A19E70B26B8DEAA00837482 /* VertexDescriptorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,11 +236,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA019A826BB769D00192ADE /* lowpoly-house-color.png in Resources */,
+				7AA019A526BB769100192ADE /* ground.png in Resources */,
+				7A2E495E26BA4E16007BB8E9 /* cube.mtl in Resources */,
+				7AB82CE626BCDC0100DF76CF /* treefir.mtl in Resources */,
+				7A2E495D26BA4E16007BB8E9 /* cube.obj in Resources */,
+				7AA019A126BB70EC00192ADE /* lowpoly-house.obj in Resources */,
+				7AB82CE526BCDC0100DF76CF /* treefir.obj in Resources */,
 				7A19E70126B8DCC500837482 /* chest.obj in Resources */,
 				7A19E6EC26B8D5DD00837482 /* Assets.xcassets in Resources */,
 				7AC1B0BA26BA16F4001B8B86 /* plane.obj in Resources */,
+				7AB82CE326BCDC0100DF76CF /* train.obj in Resources */,
 				7AC1B0B926BA16F4001B8B86 /* plane.mtl in Resources */,
 				7A19E6EF26B8D5DD00837482 /* Main.storyboard in Resources */,
+				7AB82CE426BCDC0100DF76CF /* train.mtl in Resources */,
+				7AA019A026BB70EC00192ADE /* lowpoly-house.mtl in Resources */,
 				7A19E70626B8DCDC00837482 /* Textures.xcassets in Resources */,
 				7A19E70226B8DCC500837482 /* chest.mtl in Resources */,
 			);
@@ -221,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A19E6EA26B8D5DA00837482 /* ViewController.swift in Sources */,
+				7AB82CE926BCDE5E00DF76CF /* Lights.swift in Sources */,
 				7A19E71526B8DFEC00837482 /* MathLibrary.swift in Sources */,
 				7A19E71826B8E42D00837482 /* Mesh.swift in Sources */,
 				7A19E71E26B8E57A00837482 /* Renderable.swift in Sources */,

@@ -14,6 +14,8 @@ class Model: Node {
     
     var samplerState: MTLSamplerState?
     
+    static var vertexAttributeDescriptor = MDLVertexDescriptor.defaultVertexDescriptor
+    
     init(name: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: nil) else { fatalError("Model not found: \(name)") }
         let bufferAllocator = MTKMeshBufferAllocator(device: Renderer.device)
@@ -22,9 +24,18 @@ class Model: Node {
         
         asset.loadTextures()
         
-        let (mdlMeshes, mtkMeshes) = try! MTKMesh.newMeshes(asset: asset, device: Renderer.device)
+        var mtkMeshes: [MTKMesh] = []
+        let mdlMeshes = asset.childObjects(of: MDLMesh.self) as! [MDLMesh]
         
-        meshes = zip(mdlMeshes, mtkMeshes).map { Mesh(mdlMesh: $0.0, mtkMesh: $0.1) }
+        _ = mdlMeshes.map { mdlMesh in
+            mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, tangentAttributeNamed: MDLVertexAttributeTangent, bitangentAttributeNamed: MDLVertexAttributeBitangent)
+            Model.vertexAttributeDescriptor = mdlMesh.vertexDescriptor
+            mtkMeshes.append(try! MTKMesh(mesh: mdlMesh, device: Renderer.device))
+        }
+        
+        meshes = zip(mdlMeshes, mtkMeshes).map {
+            Mesh(mdlMesh: $0.0, mtkMesh: $0.1)
+        }
         
         samplerState = Model.buildSamplerState()
         
@@ -37,37 +48,38 @@ class Model: Node {
         descriptor.rAddressMode = .repeat
         descriptor.sAddressMode = .repeat
         descriptor.tAddressMode = .repeat
-        descriptor.maxAnisotropy = 8
+        descriptor.maxAnisotropy = 16
         descriptor.mipFilter = .linear
         return Renderer.device.makeSamplerState(descriptor: descriptor)
     }
 }
 
 extension Model: Renderable {
-    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms) {
+    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms, lights: [Light]) {
         var vertexUniforms = uniforms
         var fragmentUniforms = fragmentUniforms
-        
-        vertexUniforms.modelMatrix = modelMatrix
-        renderEncoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<Uniforms>.stride, index: Int(UniformBufferIndex.rawValue))
-        
+
         renderEncoder.setFragmentSamplerState(samplerState, index: 0)
         
         fragmentUniforms.tiling = tiling
         
         for mesh in meshes {
- 
-            let vertexBuffer = mesh.mtkMesh.vertexBuffers[0].buffer
-            renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: Int(VertexBufferIndex.rawValue))
+            for (index, vertexBuffer) in mesh.mtkMesh.vertexBuffers.enumerated() {
+                renderEncoder.setVertexBuffer(vertexBuffer.buffer, offset: 0, index: index)
+            }
             
+            vertexUniforms.modelMatrix = modelMatrix
+            vertexUniforms.normalMatrix = modelMatrix.upperLeft
+            
+            renderEncoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<Uniforms>.stride, index: Int(UniformBufferIndex.rawValue))
             renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(FragmentBufferIndex.rawValue))
             
+            
             for submesh in mesh.submeshes {
+                renderEncoder.setFragmentTexture(submesh.textures.diffuse, index: Int(DiffuseTexture.rawValue))
+
                 guard let pipelineState = submesh.renderPipelineState else { fatalError("Failed to set render pipeline state for model.") }
                 renderEncoder.setRenderPipelineState(pipelineState)
-                
-                renderEncoder.setFragmentTexture(submesh.textures.diffuse, index: Int(DiffuseTexture.rawValue))
-                renderEncoder.setFragmentTexture(submesh.textures.roughness, index: Int(RoughnessTexture.rawValue))
                 
                 let mtkSubmesh = submesh.mtkSubmesh
                 renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: mtkSubmesh.indexCount, indexType: mtkSubmesh.indexType, indexBuffer: mtkSubmesh.indexBuffer.buffer, indexBufferOffset: mtkSubmesh.indexBuffer.offset)
