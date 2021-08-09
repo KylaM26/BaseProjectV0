@@ -14,7 +14,8 @@ typedef enum {
     VertexBufferIndex = 0,
     UniformBufferIndex = 11,
     FragmentBufferIndex = 12,
-    LightsBufferIndex = 13
+    LightsBufferIndex = 13,
+    MaterialBufferIndex = 14
 } BufferIndices;
 
 typedef enum {
@@ -57,6 +58,18 @@ typedef struct {
     
     LightType type;
 } Light;
+
+typedef struct {
+    vector_float3 diffuse;
+    vector_float3 ambientOcclusion;
+    vector_float3 specularColor;
+    
+    float shininess;
+    float roughness;
+    float metallic;
+    
+    
+} Material;
 
 typedef struct {
     uint tiling;

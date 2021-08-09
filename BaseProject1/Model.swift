@@ -45,10 +45,10 @@ class Model: Node {
     
     static func buildSamplerState() -> MTLSamplerState? {
         let descriptor = MTLSamplerDescriptor()
-        descriptor.rAddressMode = .repeat
+//        descriptor.rAddressMode = .repeat
         descriptor.sAddressMode = .repeat
         descriptor.tAddressMode = .repeat
-        descriptor.maxAnisotropy = 16
+        descriptor.maxAnisotropy = 8
         descriptor.mipFilter = .linear
         return Renderer.device.makeSamplerState(descriptor: descriptor)
     }
@@ -59,28 +59,33 @@ extension Model: Renderable {
         var vertexUniforms = uniforms
         var fragmentUniforms = fragmentUniforms
 
-        renderEncoder.setFragmentSamplerState(samplerState, index: 0)
         
         fragmentUniforms.tiling = tiling
+        
+        vertexUniforms.modelMatrix = modelMatrix
+        vertexUniforms.normalMatrix = vertexUniforms.modelMatrix.upperLeft
+        
+        renderEncoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<Uniforms>.stride, index: Int(UniformBufferIndex.rawValue))
+        renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(FragmentBufferIndex.rawValue))
+        
+        renderEncoder.setFragmentSamplerState(samplerState, index: 0)
         
         for mesh in meshes {
             for (index, vertexBuffer) in mesh.mtkMesh.vertexBuffers.enumerated() {
                 renderEncoder.setVertexBuffer(vertexBuffer.buffer, offset: 0, index: index)
             }
             
-            vertexUniforms.modelMatrix = modelMatrix
-            vertexUniforms.normalMatrix = modelMatrix.upperLeft
-            
-            renderEncoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<Uniforms>.stride, index: Int(UniformBufferIndex.rawValue))
-            renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(FragmentBufferIndex.rawValue))
-            
-            
             for submesh in mesh.submeshes {
-                renderEncoder.setFragmentTexture(submesh.textures.diffuse, index: Int(DiffuseTexture.rawValue))
-
                 guard let pipelineState = submesh.renderPipelineState else { fatalError("Failed to set render pipeline state for model.") }
                 renderEncoder.setRenderPipelineState(pipelineState)
                 
+                renderEncoder.setFragmentTexture(submesh.textures.diffuse, index: Int(DiffuseTexture.rawValue))
+                renderEncoder.setFragmentTexture(submesh.textures.normal, index: Int(NormalTexture.rawValue))
+                renderEncoder.setFragmentTexture(submesh.textures.roughness, index: Int(RoughnessTexture.rawValue))
+                
+                var material = submesh.material
+                renderEncoder.setFragmentBytes(&material, length: MemoryLayout<Material>.stride, index: Int(MaterialBufferIndex.rawValue))
+
                 let mtkSubmesh = submesh.mtkSubmesh
                 renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: mtkSubmesh.indexCount, indexType: mtkSubmesh.indexType, indexBuffer: mtkSubmesh.indexBuffer.buffer, indexBufferOffset: mtkSubmesh.indexBuffer.offset)
             }

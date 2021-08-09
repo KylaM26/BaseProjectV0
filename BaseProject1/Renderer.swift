@@ -15,6 +15,7 @@ class Renderer: NSObject {
     static var library: MTLLibrary!
     
     var depthStencilState: MTLDepthStencilState?
+    static var colorPixelFormat: MTLPixelFormat!
     
     var models: [Model] = []
     
@@ -24,8 +25,8 @@ class Renderer: NSObject {
     
     var camera: Camera = {
         let camera = ArcballCamera()
-        camera.distance = 5
-        camera.target = [0, 0.5, 0]
+        camera.distance = 6
+        camera.target = [0, 2.2, 0]
         camera.rotation.x = Float(-10).degreesToRadians
         return camera
     }()
@@ -36,6 +37,7 @@ class Renderer: NSObject {
         Renderer.device = device
         metalView.device = device
         metalView.depthStencilPixelFormat = .depth32Float
+        Renderer.colorPixelFormat = metalView.colorPixelFormat
         // Each frame consists of commands that you send to the GPU.
         // You wrap up these commands in a render command encoder.
         // Command buffers organize these command encoders and a command queue organizes the command buffers.
@@ -51,19 +53,30 @@ class Renderer: NSObject {
         let plane = Model(name: "plane.obj")
         plane.tiling = 16
         plane.scale = [40, 40, 40]
-        plane.position.y = -1
         models.append(plane)
 
+        let cottage = Model(name: "cottage2.obj")
+        cottage.position = [0, 0, 6]
+        cottage.rotation = [0, Float(50).degreesToRadians, 0]
+        models.append(cottage)
+        
         let cube = Model(name: "cube.obj")
+        cube.position = [0, 1, 0]
         models.append(cube)
+        
+        
+        let chest = Model(name: "chest.obj")
+        chest.position = [3, 0, 2]
+        models.append(chest)
         
         
         lights.append(sunlight)
         lights.append(ambientLight)
+        lights.append(fillLight)
         fragmentUniforms.lightCount = UInt32(lights.count)
         
         metalView.delegate = self
-        metalView.clearColor = MTLClearColor(red: 0.4, green: 0.8, blue: 1, alpha: 1)
+        metalView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
         
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
     }
@@ -98,9 +111,9 @@ extension Renderer: MTKViewDelegate {
         uniforms.projectionMatrix = camera.projectionMatrix
         
         fragmentUniforms.cameraPosition = camera.position
-        
+
         renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: Int(LightsBufferIndex.rawValue))
-        
+
         for model in models {
             model.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms, lights: lights)
         }
